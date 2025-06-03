@@ -15,14 +15,14 @@
         <div class="col">
           <%= flash["notice"] %>
         </div>
-        <div class="col-3 tex-end">
+        <div class="col-4 tex-end">
           <% @user = User.find_by({"id"=>session["user_id"]})%>
           <% if @user == nil %>
             <a href="/users/new" class="btn btn-default">Sign Up</a> |
             <a href="/login" class="btn btn-default">Login</a>
           <% else %>
             Logged in as: <%= @user["username"]%> |
-            <a href="/logout" class="btn btn-default"></a>
+            <a href="/logout" class="btn btn-default">Logout</a>
           <% end %>
         </div>
       </div>

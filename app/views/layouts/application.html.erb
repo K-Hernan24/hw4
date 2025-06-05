@@ -33,21 +33,37 @@
          </ul>
 
         <ul class="navbar-nav mb-2 mb-lg-0">
-
-          <% @user = User.find_by({"id"=>session["user_id"]})%>
+          <% @user = User.find_by({ "id" => session["user_id"] }) %>
           <% if @user == nil %>
-            <a href="/users/new" class="btn btn-default">Sign Up</a> |
-            <a href="/login" class="btn btn-default">Login</a>
+            <li class="nav-item">
+              <a href="/users/new" class="nav-link">Sign Up</a>
+            </li>
+            <li class="nav-item">
+              <a href="/login" class="nav-link">Login</a>
+            </li>
           <% else %>
-            Logged in as: <%= @user["username"]%> |
-            <a href="/logout" class="btn btn-default">Logout</a>
+            <li class="navbar-text">
+              Logged in as: <%= @user["username"] %>
+              |
+            </li>
+            <li class="nav-item">
+              <a href="/logout" class="nav-link">Logout</a>
+            </li>
           <% end %>
-        </ul>
         </div>
+        
       </div>
-    </nav>
+    </div>
+  </nav>
+
+   <div class="container mt-3">
+    <% if flash["notice"] != nil %>
+      <div class="alert alert-primary">
+        <%= flash["notice"] %>
+      </div>
+    <% end %>
 
     <%= yield %>
   </div>
-  </body>
+</body>
 </html>

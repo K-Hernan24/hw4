@@ -1,12 +1,15 @@
-<h1>Login</h1>
+<h1 class="fs-2 mb-4">Login Information</h1>
 
 <form action="/sessions" method="post">
-<p>
-  <label for="email_input">Email</label>
-  <input type="text" name="email" id="email_input">
-  <label for="password_input">Password</label>
-  <input type="password" name="password" id="password_input">
-</p>
+  <div class="mb-3">
+    <label for="email_input" class="form-label">Email</label>
+    <input type="text" class="form-control" name="email" id="email_input">
+  </div>
 
-  <button class="btn btn-primary">Login<button>
+  <div class="mb-3">
+    <label for="password_input" class="form-label">Password</label>
+    <input type="password" class="form-control" name="password" id="password_input">
+  </div>
+  
+  <button class="btn btn-primary" type="submit">Login</button>
 </form>

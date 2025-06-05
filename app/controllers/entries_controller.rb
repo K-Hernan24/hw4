@@ -1,5 +1,20 @@
 class EntriesController < ApplicationController
 
+  def index
+    @entries = Entry.all
+
+    respond_to do |format|
+      format.html # implicitly renders posts/index.html.erb
+      format.json do
+        render :json => @entries.map { |entry|Add commentMore actions
+          entry.as_json.merge(
+            image: entry.uploaded_image.attached? ? url_for(entry.uploaded_image) : entry.image
+          )
+        }
+      end
+    end
+  end
+  
   def new
     @user = User.find_by({"id"=>session["user_id"]})
   end
@@ -12,6 +27,7 @@ class EntriesController < ApplicationController
       @entry["description"] = params["description"]
       @entry["occurred_on"] = params["occurred_on"]
       @entry["place_id"] = params["place_id"]
+      @entry.uploaded_image.attach(params["uploaded_image"])
       @entry["user_id"] = @user["id"]
       @entry.save
       redirect_to "/places/#{@entry["place_id"]}"     

@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+    
   end
 
   def create
@@ -13,6 +14,9 @@ class SessionsController < ApplicationController
         flash["notice"] = "No"
         redirect_to "/login"
       end
+    else
+      flash["notice"] = "No"
+      redirect_to "/login"
     end
   end
 
@@ -21,5 +25,6 @@ class SessionsController < ApplicationController
     flash["notice"] = "Goodbye"
     redirect_to "/login"
   end
+
 end
   
